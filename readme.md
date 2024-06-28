@@ -12,7 +12,7 @@ This project demonstrates how to use a DHT22 sensor with a Raspberry Pi Pico to 
 - [LiquidCrystal library](https://github.com/arduino-libraries/LiquidCrystal)
 
 ## Circuit Diagram
-Include a simple circuit diagram here, showing how the components are connected.
+![alt text](image.png)
 
 ## Installation and Setup
 1. **Install Libraries:**
