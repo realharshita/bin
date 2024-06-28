@@ -1,53 +1,38 @@
 #include <DHT.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal.h>
 
-// Define DHT sensor type and pin
-#define DHTPIN 10       // DHT22 data pin connected to GP10
-#define DHTTYPE DHT22   // DHT 22 (AM2302)
-
-// Initialize DHT sensor
+#define DHTPIN 28
+#define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
-// Initialize the LCD
-LiquidCrystal_I2C lcd(0x27, 16, 2);  // Address 0x27 for a 16x2 display
+const int rs = 0, en = 1, d4 = 2, d5 = 3, d6 = 4, d7 = 5;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 void setup() {
-  // Initialize Serial communication for debugging
   Serial.begin(9600);
-  
-  // Initialize DHT sensor
   dht.begin();
-  
-  // Initialize LCD
-  lcd.init();                      // Initialize the LCD
-  lcd.backlight();                 // Turn on backlight
-  lcd.setCursor(0, 0);             // Set cursor to first column, first row
-  lcd.print("Temperature:");       // Print initial message
+  lcd.begin(16, 2);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Current reading");
 }
 
 void loop() {
-  // Read temperature and humidity from DHT sensor
-  float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
-
-  // Check if any reads failed
-  if (isnan(temperature) || isnan(humidity)) {
+  
+  if (isnan(humidity)) {
     Serial.println("Failed to read from DHT sensor!");
+    Serial.print("Humidity: ");
+    Serial.println(humidity);
     return;
   }
-
-  // Display temperature and humidity on LCD
-  lcd.setCursor(0, 1);             // Set cursor to first column, second row
-  lcd.print("Temp: ");
-  lcd.print(temperature);
-  lcd.print(" C");
-
-  lcd.setCursor(9, 1);             // Set cursor to ninth column, second row
+  
+  lcd.setCursor(0, 1);
   lcd.print("Humidity: ");
   lcd.print(humidity);
-  lcd.print(" %");
-
-  // Wait a few seconds between measurements
+  
+  Serial.print("Humidity: ");
+  Serial.println(humidity);
+  
   delay(2000);
 }
