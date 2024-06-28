@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "The Bin - Hack Club",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico", "top": 188.75, "left": -390.05, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "board-ssd1306-0",
+      "top": 435.14,
+      "left": -210.97,
+      "attrs": {}
+    },
+    { "type": "wokwi-hc-sr04", "id": "wokwi-hc-sr04-0", "top": -8.1, "left": -301.7, "attrs": {} },
+    { "type": "wokwi-buzzer", "id": "wokwi-buzzer-0", "top": 88.8, "left": -27, "attrs": {} },
+    {
+      "type": "wokwi-ir-receiver",
+      "id": "wokwi-ir-receiver-0",
+      "top": 325.05,
+      "left": -40.18,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "wokwi-pir-motion-sensor-0",
+      "top": 474.4,
+      "left": -477.78,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "wokwi-pir-motion-sensor-0:OUT", "pico:GP0", "green", [ "v0" ] ],
+    [ "wokwi-pir-motion-sensor-0:GND", "pico:GND.1", "black", [ "v0" ] ],
+    [ "wokwi-pir-motion-sensor-0:VCC", "pico:3V3", "red", [ "v0" ] ],
+    [ "wokwi-hc-sr04-0:VCC", "pico:3V3", "red", [ "v0" ] ],
+    [ "wokwi-hc-sr04-0:GND", "pico:GND.1", "black", [ "v0" ] ],
+    [ "wokwi-hc-sr04-0:ECHO", "pico:GP1", "green", [ "v28.8", "h-164" ] ],
+    [ "wokwi-hc-sr04-0:TRIG", "pico:GP2", "green", [ "v0" ] ],
+    [ "wokwi-ir-receiver-0:DAT", "pico:GP4", "green", [ "v0" ] ],
+    [ "wokwi-ir-receiver-0:VCC", "pico:3V3", "red", [ "v0" ] ],
+    [ "wokwi-ir-receiver-0:GND", "pico:GND.8", "black", [ "v0" ] ],
+    [ "board-ssd1306-0:VCC", "pico:3V3", "red", [ "v0" ] ],
+    [ "board-ssd1306-0:GND", "pico:GND.8", "black", [ "v0" ] ],
+    [ "board-ssd1306-0:SCL", "pico:GP8", "green", [ "v0" ] ],
+    [ "board-ssd1306-0:SDA", "pico:GP9", "green", [ "v0" ] ],
+    [ "wokwi-buzzer-0:1", "pico:GND.8", "green", [ "v0" ] ],
+    [ "wokwi-buzzer-0:2", "pico:3V3", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
